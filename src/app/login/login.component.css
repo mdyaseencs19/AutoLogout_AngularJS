@@ -1,0 +1,18 @@
+.form-group {
+    margin-top: 2%;
+}
+
+label {
+    margin-bottom: 0.5%;
+}
+
+.loginForm {
+    border: 2px solid #dee2e6;
+    border-radius: 5px;
+    padding: 40px;
+    margin-top: 20px;
+}
+
+.btn-success {
+    width: 280%;
+}

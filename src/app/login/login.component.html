@@ -1,0 +1,43 @@
+<div class="container-fluid">
+    <div class="p-3 mb-4 text-center bg-light rounded3">
+        <div class="container-fluid py-5">
+            <h1 class="display-5 fw-bold">
+                Auto Logout App in Angular JS
+            </h1>
+            <p class="fs-4 text">
+                Welcome to the Login Screen.!
+            </p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4 offset-sm-4 text-left">
+             <form class="loginForm" [formGroup]="loginForm" (ngSubmit)="loginProcess()">
+                <h3 class="text-center fw-bold">Login</h3>
+                <hr class="mb-4 mt-0"  />
+                <!-- <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                    class="alert alert-danger"> -->
+                
+                <div class="form-group" [ngClass]="{'has-danger': loginForm.get('email').touched && loginForm.get('email').invalid, 'has-success': loginForm.get('email').valid}">
+                    <label for="email">Email Address</label>
+                    <input type="email" class="form-control" name="email" formControlName="email" id="email" placeholder="Email Address" required />
+                    <div *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)" class="m-2 text-danger">
+                        <div *ngIf="loginForm.get('email').errors?.['required']" class="form-control-feedback">Email is required!</div>
+                        <div *ngIf="loginForm.get('email').errors?.['pattern']" class="form-control-feedback">Email is Invalid!</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input formControlName="password" class="form-control" type="password" placeholder="Password" autocomplete="on" />
+                    <div *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)" class="m-2 text-danger">
+                        <div *ngIf="loginForm.get('password').errors?.['required']" class="form-control-feedback">Password is required!</div>
+                        <!-- <div *ngIf="loginForm.get('password').errors?.['pattern']" class="form-control-feedback">Email is Invalid!</div> -->
+                    </div>
+                </div>
+                <div class="form-group col-md-2 offset-3">
+                    <button class="btn btn-success btn-block mt-3">Submit</button>
+                </div>
+             </form>
+        </div>
+   </div>
+</div>
