@@ -11,17 +11,17 @@ export class SessionService {
   constructor() { }
 
   startTimer(timeout: number, logoutCallback: () => void) {
-    console.log('startTimer called')
+    // console.log('startTimer called')
     this.timer = setTimeout(logoutCallback, timeout);
   }
 
   resetTimer() {
-    console.log('reset called')
+    // console.log('reset called')
     clearTimeout(this.timer);
   }
 
   stopTimer() {
-    console.log('Stop called')
+    // console.log('Stop called')
     clearTimeout(this.timer);
     this.timer = null;
   }
