@@ -1,3 +1,27 @@
+# Angular Application with AutoLogOut Capability
+
+#### If there is no activity within 10 seconds, the user will be automatically logged out.
+
+#### Prerequisites -
+1. Node JS
+2. MongoDB
+<hr />
+
+1. Backend
+    - cd backend - Switch to backend directory
+    - npm install - Installs the project dependencies
+    - node app.js - Starts the backend server
+    - The backend will start listening on port 8000
+    - A Sample route for signup - http://localhost:8000/api/signup
+
+2. Frontend
+    - npm install - Installs the project dependencies
+    - ng s -o - Serves the Application frontend on port 4200
+    - Frontend URL - http://localhost:4200/login
+    - Sample credentials - admin@gmail.com / Admin@123
+    - If there is no activity within 10 seconds, the user will be automatically logged out.
+<hr />
+
 # AutoLogOut
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.0.
