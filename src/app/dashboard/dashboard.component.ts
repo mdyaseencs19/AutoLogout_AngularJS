@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   modalTitle:any
   userName:any
   name: any
-  private maxAge: number = 10000;
+  private maxAge: number = 5000;
 
   constructor(private formBuilder:FormBuilder, private api: ApiService, private router:Router, private sessionService: SessionService, private authServiceService:AuthServiceService) { }
 
@@ -40,25 +40,14 @@ export class DashboardComponent implements OnInit {
     this.sessionService.startTimer(this.maxAge, this.logout);
 
     // Listen for user activity events to reset the timer
-    window.addEventListener('mousemove', this.resetAutoLogoutTimer);
-    window.addEventListener('keydown', this.resetAutoLogoutTimer);
+    // window.addEventListener('mousemove', this.resetAutoLogoutTimer);
+    // window.addEventListener('keydown', this.resetAutoLogoutTimer);
   }
 
   ngOnDestroy() {
     this.sessionService.stopTimer();
-    window.removeEventListener('mousemove', this.resetAutoLogoutTimer);
-    window.removeEventListener('keydown', this.resetAutoLogoutTimer);
   }
 
-  private startAutoLogoutTimer() {
-    this.sessionService.startTimer(this.maxAge, this.logout);
-  }
-  
-  private resetAutoLogoutTimer = () => {
-    this.sessionService.resetTimer();
-    this.startAutoLogoutTimer();
-  }
-  
   getCurrentUserName() {
     const { user } = this.authServiceService.isAuthenticated();
     this.userName = user ? user.name : "User";
@@ -130,7 +119,15 @@ export class DashboardComponent implements OnInit {
   }
 
   private logout = () => {
-    this.authServiceService.logout();
+    const confirm = window.confirm('Your session is about to expire. Do you want to continue.?');
+    // Implement logic to handle user's decision (e.g., logout or refresh token)
+    if (!confirm) {
+      this.authServiceService.logout();
+    } else {
+      // Reset the timer and continue the session
+      this.sessionService.resetTimer();
+      this.sessionService.startTimer(this.maxAge, this.logout);
+    }
   }
 
   logoutBtn() {
